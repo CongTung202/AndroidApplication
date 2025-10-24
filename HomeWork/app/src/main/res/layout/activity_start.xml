@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp">
+
+    <Button
+        android:id="@+id/buttonExercise1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bài 1: Đổi đơn vị nhiệt độ" />
+
+    <Button
+        android:id="@+id/buttonExercise2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Bài 2: Tính chỉ số BMI" />
+
+    <Button
+        android:id="@+id/buttonExercise3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Bài 3: Thực hiện phép tính" />
+
+    <Button
+        android:id="@+id/buttonExercise4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Bài 4: Thông tin cá nhân" />
+
+    <Button
+        android:id="@+id/buttonExercise5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Bài 5: Lab 2" />
+
+</LinearLayout>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/editTextFahrenheit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Độ F"
+        android:inputType="numberSigned|numberDecimal" />
+
+    <EditText
+        android:id="@+id/editTextCelsius"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="Độ C"
+        android:inputType="numberSigned|numberDecimal" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/buttonConvertToCelsius"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Đổi sang độ C"
+            android:backgroundTint="#673AB7"
+            android:textColor="@android:color/white"/>
+
+        <Button
+            android:id="@+id/buttonConvertToFahrenheit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:text="Đổi sang độ F"
+            android:backgroundTint="#673AB7"
+            android:textColor="@android:color/white"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonClear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Xóa"
+        android:backgroundTint="#673AB7"
+        android:textColor="@android:color/white"/>
+
+</LinearLayout>
