@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 public class Lab2Activity extends AppCompatActivity {
 
@@ -24,6 +25,13 @@ public class Lab2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lab2);
+
+        // --- Cấu hình Toolbar ---
+        Toolbar toolbar = findViewById(R.id.toolbar_lab2);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle("Lab2_PS23456");
+        }
 
         // Ánh xạ view
         editTextName = findViewById(R.id.editTextName_lab2);

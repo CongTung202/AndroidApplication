@@ -24,6 +24,9 @@
         <activity android:name=".BmiActivity" />
         <activity android:name=".CalculatorActivity" />
         <activity android:name=".ProfileActivity" />
+        <activity
+            android:name=".Lab2Activity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 
 </manifest>
