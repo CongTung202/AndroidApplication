@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".LoginForm">
+
+    <TextView
+        android:id="@+id/textViewLoginTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="32dp"
+        android:text="Đăng nhập"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/labelUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewLoginTitle"
+        android:layout_marginTop="8dp"
+        android:text="Tên đăng nhập:" />
+
+    <EditText
+        android:id="@+id/editTextUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewLoginTitle"
+        android:layout_alignBaseline="@id/labelUsername"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@id/labelUsername"
+        android:layout_marginStart="8dp"
+        android:hint="Username" />
+ 
+    <TextView
+        android:id="@+id/labelPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextUsername"
+        android:layout_marginTop="24dp"
+        android:text="Mật khẩu:" />
+
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextUsername"
+        android:layout_alignBaseline="@id/labelPassword"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@id/labelPassword"
+        android:layout_marginStart="8dp"
+        android:hint="Password"
+        android:inputType="textPassword" />
+
+    <CheckBox
+        android:id="@+id/checkboxRemember"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextPassword"
+        android:layout_marginTop="16dp"
+        android:text="Ghi nhớ mật khẩu" />
+
+    <Button
+        android:id="@+id/buttonLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/checkboxRemember"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:text="Login" />
+    <Button
+        android:id="@+id/buttonHuy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/checkboxRemember"
+
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:text="Login" />
+
+</RelativeLayout>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:gravity="center|end"
+    android:ignoreGravity="@id/btn1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Relative1Gravity">
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:text="ThienLyOi"
+        android:textSize="30sp"
+        android:backgroundTint="#FF0000"
+        android:id="@+id/btn1"/>
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="200dp"
+        android:text="JackCoBon"
+        android:textSize="30sp"
+        android:backgroundTint="#F0FF"
+        android:id="@+id/btn2"/>
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="55Trieu"
+        android:textSize="30sp"
+        android:backgroundTint="#FF9F"
+        android:id="@+id/btn3"/>
+
+</RelativeLayout>
