@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LayoutDesign">
         <activity
+            android:name=".Frame1"
+            android:exported="false" />
+        <activity
+            android:name=".Table1"
+            android:exported="false" />
+        <activity
             android:name=".LoginForm"
             android:exported="false" />
         <activity
