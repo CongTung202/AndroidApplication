@@ -1,11 +1,11 @@
 package com.example.listviewobject;
 
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,13 +14,13 @@ import com.example.listviewobject.adapter.PersonAdapter;
 import com.example.listviewobject.model.Person;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText edtId, edtName, edtTuoi;
-    private RadioGroup ragGender;
-    private RadioButton rbNam, rbNu, rbKhac;
-    private Button btnAdd, btnEdit, btnDel;
+    private EditText edtId, edtName, edtDateOfBirth;
+    private Spinner spnGender;
+    private Button btnAdd, btnEdit, btnDel, btnClear;
     private ListView lvPerson;
 
     private PersonAdapter adapter;
@@ -40,61 +40,67 @@ public class MainActivity extends AppCompatActivity {
     private void addViews() {
         edtId = findViewById(R.id.edtId);
         edtName = findViewById(R.id.edtName);
-        edtTuoi = findViewById(R.id.edtTuoi);
-        ragGender = findViewById(R.id.ragGender);
-        rbNam = findViewById(R.id.rbNam);
-        rbNu = findViewById(R.id.rbNu);
-        rbKhac = findViewById(R.id.rbKhac);
+        edtDateOfBirth = findViewById(R.id.edtDateOfBirth);
+        spnGender = findViewById(R.id.spnGender);
         btnAdd = findViewById(R.id.btnAdd);
         btnEdit = findViewById(R.id.btnEdit);
         btnDel = findViewById(R.id.btnDel);
+        btnClear = findViewById(R.id.btnClear);
         lvPerson = findViewById(R.id.lvPerson);
     }
 
     private void initData() {
         personList = new ArrayList<>();
-        personList.add(new Person("1", "BokaChan", "Nam", "20"));
-        personList.add(new Person("2", "Lina", "Nữ", "22"));
-        personList.add(new Person("3", "Trien", "Khác", "21"));
+        personList.add(new Person("1", "BokaChan", "Nam", "20/02/2005"));
+        personList.add(new Person("2", "Lina", "Nữ", "01/01/2005"));
+        personList.add(new Person("3", "Speyin", "Khác", "11/05/2005"));
 
         adapter = new PersonAdapter(this, R.layout.list_item_person, personList);
         lvPerson.setAdapter(adapter);
+
+        ArrayAdapter<CharSequence> genderAdapter = ArrayAdapter.createFromResource(this,
+                R.array.gender_array, android.R.layout.simple_spinner_item);
+        genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnGender.setAdapter(genderAdapter);
     }
 
     private void addEvents() {
         btnAdd.setOnClickListener(v -> addPerson());
         btnEdit.setOnClickListener(v -> editPerson());
         btnDel.setOnClickListener(v -> deletePerson());
+        btnClear.setOnClickListener(v -> {
+            clearFields();
+            selectedPosition = -1;
+            adapter.setSelectedPosition(-1);
+        });
 
         lvPerson.setOnItemClickListener((parent, view, position, id) -> {
             selectedPosition = position;
+            adapter.setSelectedPosition(position);
+
             Person person = personList.get(position);
             edtId.setText(person.getId());
             edtName.setText(person.getName());
-            edtTuoi.setText(person.getAge());
+            edtDateOfBirth.setText(person.getDateOfBirth());
 
-            if (person.getGender().equalsIgnoreCase("Nam")) {
-                rbNam.setChecked(true);
-            } else if (person.getGender().equalsIgnoreCase("Nữ")) {
-                rbNu.setChecked(true);
-            } else {
-                rbKhac.setChecked(true);
-            }
+            String[] genderArray = getResources().getStringArray(R.array.gender_array);
+            int genderPosition = Arrays.asList(genderArray).indexOf(person.getGender());
+            spnGender.setSelection(genderPosition);
         });
     }
 
     private void addPerson() {
         String id = edtId.getText().toString().trim();
         String name = edtName.getText().toString().trim();
-        String age = edtTuoi.getText().toString().trim();
-        String gender = getSelectedGender();
+        String dateOfBirth = edtDateOfBirth.getText().toString().trim();
+        String gender = spnGender.getSelectedItem().toString();
 
-        if (id.isEmpty() || name.isEmpty() || age.isEmpty()) {
+        if (id.isEmpty() || name.isEmpty() || dateOfBirth.isEmpty()) {
             Toast.makeText(this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        Person person = new Person(id, name, gender, age);
+        Person person = new Person(id, name, gender, dateOfBirth);
         personList.add(person);
         adapter.notifyDataSetChanged();
         clearFields();
@@ -108,10 +114,10 @@ public class MainActivity extends AppCompatActivity {
 
         String id = edtId.getText().toString().trim();
         String name = edtName.getText().toString().trim();
-        String age = edtTuoi.getText().toString().trim();
-        String gender = getSelectedGender();
+        String dateOfBirth = edtDateOfBirth.getText().toString().trim();
+        String gender = spnGender.getSelectedItem().toString();
 
-        if (id.isEmpty() || name.isEmpty() || age.isEmpty()) {
+        if (id.isEmpty() || name.isEmpty() || dateOfBirth.isEmpty()) {
             Toast.makeText(this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -120,11 +126,12 @@ public class MainActivity extends AppCompatActivity {
         person.setId(id);
         person.setName(name);
         person.setGender(gender);
-        person.setAge(age);
+        person.setDateOfBirth(dateOfBirth);
 
         adapter.notifyDataSetChanged();
         clearFields();
         selectedPosition = -1; // Reset selection
+        adapter.setSelectedPosition(-1); // Clear selection in adapter
     }
 
     private void deletePerson() {
@@ -137,24 +144,13 @@ public class MainActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
         clearFields();
         selectedPosition = -1; // Reset selection
-    }
-
-    private String getSelectedGender() {
-        int selectedId = ragGender.getCheckedRadioButtonId();
-        if (selectedId == R.id.rbNam) {
-            return "Nam";
-        } else if (selectedId == R.id.rbNu) {
-            return "Nữ";
-        } else if (selectedId == R.id.rbKhac) {
-            return "Khác";
-        }
-        return "";
+        adapter.setSelectedPosition(-1); // Clear selection in adapter
     }
 
     private void clearFields() {
         edtId.setText("");
         edtName.setText("");
-        edtTuoi.setText("");
-        ragGender.clearCheck();
+        edtDateOfBirth.setText("");
+        spnGender.setSelection(0);
     }
 }

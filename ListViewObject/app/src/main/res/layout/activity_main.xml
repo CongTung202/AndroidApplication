@@ -37,12 +37,12 @@
         app:layout_constraintTop_toBottomOf="@+id/edtName" />
 
     <EditText
-        android:id="@+id/edtTuoi"
+        android:id="@+id/edtDateOfBirth"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:hint="Nhap tuoi"
-        android:inputType="number"
+        android:hint="Nhap ngày sinh"
+        android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spnGender" />
@@ -53,7 +53,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/edtTuoi"
+        app:layout_constraintTop_toBottomOf="@id/edtDateOfBirth"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -79,6 +79,14 @@
             android:layout_weight="1"
             android:layout_marginStart="8dp"
             android:text="Xoa" />
+
+        <Button
+            android:id="@+id/btnClear"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:text="Clear" />
     </LinearLayout>
 
     <ListView

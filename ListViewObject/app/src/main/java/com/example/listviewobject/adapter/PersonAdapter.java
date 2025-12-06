@@ -1,6 +1,7 @@
 package com.example.listviewobject.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +19,15 @@ import java.util.List;
 
 public class PersonAdapter extends ArrayAdapter<Person> {
 
+    private int selectedPosition = -1;
+
     public PersonAdapter(@NonNull Context context, int resource, @NonNull List<Person> objects) {
         super(context, resource, objects);
+    }
+
+    public void setSelectedPosition(int position) {
+        selectedPosition = position;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -38,16 +46,22 @@ public class PersonAdapter extends ArrayAdapter<Person> {
             TextView tvDetails = v.findViewById(R.id.tvDetails);
 
             tvName.setText(person.getName());
-            String details = "ID: " + person.getId() + " - Age: " + person.getAge();
+            String details = "ID: " + person.getId() + " - Ngày sinh: " + person.getDateOfBirth();
             tvDetails.setText(details);
 
             if (person.getGender().equalsIgnoreCase("Nam")) {
-                ivGender.setImageResource(R.drawable.ic_male);
+                ivGender.setImageResource(R.drawable.gender_male);
             } else if (person.getGender().equalsIgnoreCase("Nữ")) {
-                ivGender.setImageResource(R.drawable.ic_female);
+                ivGender.setImageResource(R.drawable.gender_female);
             } else {
-                ivGender.setImageResource(R.drawable.ic_other);
+                ivGender.setImageResource(R.drawable.gender_other);
             }
+        }
+
+        if (selectedPosition == position) {
+            v.setBackgroundColor(Color.LTGRAY);
+        } else {
+            v.setBackgroundColor(Color.TRANSPARENT);
         }
 
         return v;

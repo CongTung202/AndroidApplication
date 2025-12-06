@@ -4,13 +4,13 @@ public class Person {
     private String id;
     private String name;
     private String gender;
-    private String age;
+    private String dateOfBirth;
 
-    public Person(String id, String name, String gender, String age) {
+    public Person(String id, String name, String gender, String dateOfBirth) {
         this.id = id;
         this.name = name;
         this.gender = gender;
-        this.age = age;
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getId() {
@@ -37,22 +37,22 @@ public class Person {
         this.gender = gender;
     }
 
-    public String getAge() {
-        return age;
+    public String getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setAge(String age) {
-        this.age = age;
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public Person() {
     }
+
     @Override
     public String toString() {
-        return  id + '-' +
-                name + '-' +
-                gender + '-' +
-                 age;
+        return  id + "-" +
+                name + "-" +
+                gender + "-" +
+                dateOfBirth;
     }
-
 }

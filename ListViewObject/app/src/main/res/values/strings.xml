@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">ListViewObject</string>
     <string name="gender_image">Gender Image</string>
+    <string-array name="gender_array">
+        <item>Nam</item>
+        <item>Nữ</item>
+        <item>Khác</item>
+    </string-array>
 </resources>
