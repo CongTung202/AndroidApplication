@@ -5,6 +5,7 @@ import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     ListView lvList;
     ArrayAdapter<String> adapter;
-
+    int index;//luu vi tri item duoc chon
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +34,17 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
         addViews();
+        addEvents();
+    }
+
+    private void addEvents() {
+        lvList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                index=position;
+                return false;
+            }
+        });
     }
 
     private void addViews() {
@@ -65,5 +77,17 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId()==1) {
+            Toast.makeText(this, "Ban Chon Sua", Toast.LENGTH_SHORT).show();
+        }
+        if(item.getItemId()==2) {
+            Toast.makeText(this, "Ban Chon Xoa", Toast.LENGTH_SHORT).show();
+            adapter.remove(adapter.getItem(index));
+        }
+        return super.onContextItemSelected(item);
+    }
+
 
 }
