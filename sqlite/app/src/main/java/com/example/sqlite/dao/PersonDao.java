@@ -47,12 +47,42 @@ public class PersonDao extends DatabaseHelper {
         }
         return list;
     }
+    public Person getById(int id){
+        Cursor cr=db.rawQuery("select * from Person where Id=?",null);
+        Person p=new Person();
+        if(cr.moveToFirst()){
+            p.setId(cr.getInt(0));
+            p.setName(cr.getString(1));
+            try {
+                p.setBirthday(new SimpleDateFormat("dd/MM/yyyy").parse(cr.getString(2)));
+            }catch (Exception e){
+                p.setBirthday(new Date());
+            }
+            p.setGender(cr.getString(3));
+        }
+        cr.close();
+        return p;
+    }
     public long insert(Person p) {
         ContentValues v = new ContentValues();
         v.put("Name", p.getName());
         v.put("Birthday", new SimpleDateFormat("dd/MM/yyyy").format(p.getBirthday()));
         v.put("Gender", p.getGender());
         return db.insert("Person", null, v);
+    }
+    public long update(Person p) {
+        ContentValues v = new ContentValues();
+        v.put("Name", p.getName());
+        v.put("Birthday", new SimpleDateFormat("dd/MM/yyyy").format(p.getBirthday()));
+        v.put("Gender", p.getGender());
+        long i = db.update("Person", v, "Id=?", new String[]{String.valueOf(p.getId())});
+        db.close();
+        return i;
+    }
+    public long delete(int id) {
+        long i = db.delete("Person", "Id=?", new String[]{String.valueOf(id)});
+        db.close();
+        return i;
     }
 
 
